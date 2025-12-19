@@ -2,8 +2,8 @@ name: CI/CD Pipeline
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -38,10 +38,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ahmadzulfadli/application-private:demo-service-latest, ahmadzulfadli/application-private:demo-service-${{ github.ref_name }}
+          tags: ahmadzulfadli/application-private:demo2-service-latest, ahmadzulfadli/application-private:demo2-service-${{ github.ref_name }}
 
       # Step 6: Clean up old images on Docker Hub
-      - name: Clean up old images (demo-service only)
+      - name: Clean up old images (demo2-service only)
         run: |
           REPO="ahmadzulfadli/application-private"
           SERVICE="demo-service"
